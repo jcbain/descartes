@@ -83,8 +83,24 @@ def create_params(param_str, *opts):
     return [param_str + "{}".format(opt) for opt in opts]
 
 
-def trigger_options(opton, param_str, *opts):
-    if not opton:
+def trigger_options(opt_on, param_str, *opts):
+    """
+
+    Parameters
+    ----------
+    opt_on: bool
+        An option that specifies whether or not the parameter should be a single call or multiple calls.
+    param_str: str
+        The parameter options string that takes on the form "<opt>=".
+    opts: str
+        The parameter option values. If `opton` is `False` then only the first option specified will be considered.
+
+    Returns
+    -------
+    list
+        A list of strings explicitly specifying the parameter to be run within the slim script.
+    """
+    if not opt_on:
         call = create_params(param_str, opts[0])
     else:
         call = create_params(param_str, *opts)
@@ -97,7 +113,8 @@ def main():
     `local_adaptation.slim`. This file can be run from the command line with the falling named arguments:
     --rep : The number of replicates you want to run.
 
-    Returns:
+    Returns
+    -------
         A call to the slim command running the script `local_adaptation.slim`
     """
     cwd = os.getcwd() + '/'
