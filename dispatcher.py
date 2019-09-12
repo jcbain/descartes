@@ -83,6 +83,14 @@ def create_params(param_str, *opts):
     return [param_str + "{}".format(opt) for opt in opts]
 
 
+def trigger_options(opton, param_str, *opts):
+    if not opton:
+        call = create_params(param_str, opts[0])
+    else:
+        call = create_params(param_str, *opts)
+    return call
+
+
 def main():
     """
     Provides a wrapper around the slim command and runs a file for simulating local adaptation called
@@ -100,44 +108,22 @@ def main():
     parser.add_argument('--m', action='store', type=bool, default=False)
     parser.add_argument('--mu', action='store', type=bool, default=False)
     parser.add_argument('--r', action='store', type=bool, default=False)
-    parser.add_argument('phi', action='store', type=bool, default=False)
+    parser.add_argument('--phi', action='store', type=bool, default=False)
     results = parser.parse_args()
 
-    m_string = "m="
-    mu_string = "mu="
-    r_string = "r="
-    phi_string = "phi="
-
-    if not results.m:
-        m = create_params(m_string, "1e-5")  # migration rate = "m=1e-5"
-    else:
-        m = create_params(m_string, "1e-5", "1e-4", "1e-3")
-
-    if not results.mu:
-        mu = create_params(mu_string, "1e-5")  # mutation rate = "mu=1e-5"
-    else:
-        mu = create_params(mu_string, "1e-5", "1e-4", "1e-3")
-
-    if not results.r:
-        r = create_params(r_string, "1e-5")
-    else:
-        r = create_params(r_string, "1e-5", "1e-4", "1e-3")
-
-    if not results.phi:
-        phi = create_params(phi_string, "1e-5")
-    else:
-        phi = create_params(phi_string, "1e-5", "1e-4", "1e-3")
+    trigger_options(results.m, "m=", "1e-5", "1e-4", "1e-3")
+    trigger_options(results.mu, "mu=", "1e-5", "1e-4", "1e-3")
+    trigger_options(results.r, "r=", "1e-5", "1e-4", "1e-3")
+    trigger_options(results.phi, "phi=", "5", "4", "3")
 
     params_list = [x for x in product(m, mu, r, phi)]
-    popen_unformatted = 'slim -d "{}" -d "{}" -d "{}" -d "{}" -d "{}" -d "{}" local_adaptation.slim'
+    popen_scaffold = 'slim -d "{}" -d "{}" -d "{}" -d "{}" -d "{}" local_adaptation.slim'
 
     output_every = "outputEvery=750"
-    outfile_path = "stdout='/Users/jamesbain/Documents/research/simulations/practice/output/{}'"
 
     output_list = []
     for params in params_list:
-        popen_string = popen_unformatted.format(params[0], params[1], params[2], params[3], output_every,
-                                                outfile_path)
+        popen_string = popen_scaffold.format(params[0], params[1], params[2], params[3], output_every)
         rep_list = []
         for rep in range(results.rep):
             process = subprocess.Popen([popen_string], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
@@ -150,7 +136,7 @@ def main():
     #
     #         if len(err) > 0:
     #             print(err)
-    #
+
         flat_reps = '\n'.join([i for sublist in rep_list for i in sublist])
         output_list.append(flat_reps)
     # print(output_list)
