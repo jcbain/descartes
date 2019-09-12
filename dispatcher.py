@@ -99,16 +99,34 @@ def main():
     parser.add_argument('--rep', action='store', type=int)
     parser.add_argument('--m', action='store', type=bool, default=False)
     parser.add_argument('--mu', action='store', type=bool, default=False)
+    parser.add_argument('--r', action='store', type=bool, default=False)
+    parser.add_argument('phi', action='store', type=bool, default=False)
     results = parser.parse_args()
 
     m_string = "m="
-    if not(results.m):
+    mu_string = "mu="
+    r_string = "r="
+    phi_string = "phi="
+
+    if not results.m:
         m = create_params(m_string, "1e-5")  # migration rate = "m=1e-5"
     else:
         m = create_params(m_string, "1e-5", "1e-4", "1e-3")
-    mu = ["mu=1e-5"]  # mutation rate
-    r = ["r=1e-5"]  # recombination rate
-    phi = ["phi=5"]  # fitness
+
+    if not results.mu:
+        mu = create_params(mu_string, "1e-5")  # mutation rate = "mu=1e-5"
+    else:
+        mu = create_params(mu_string, "1e-5", "1e-4", "1e-3")
+
+    if not results.r:
+        r = create_params(r_string, "1e-5")
+    else:
+        r = create_params(r_string, "1e-5", "1e-4", "1e-3")
+
+    if not results.phi:
+        phi = create_params(phi_string, "1e-5")
+    else:
+        phi = create_params(phi_string, "1e-5", "1e-4", "1e-3")
 
     params_list = [x for x in product(m, mu, r, phi)]
     popen_unformatted = 'slim -d "{}" -d "{}" -d "{}" -d "{}" -d "{}" -d "{}" local_adaptation.slim'
