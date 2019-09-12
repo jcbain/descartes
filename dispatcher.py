@@ -85,6 +85,8 @@ def create_params(param_str, *opts):
 
 def trigger_options(opt_on, param_str, *opts):
     """
+    This is wrapper function around `create_params()` that triggers whether or not one or more options will
+    be specified per parameter.
 
     Parameters
     ----------
@@ -128,10 +130,10 @@ def main():
     parser.add_argument('--phi', action='store', type=bool, default=False)
     results = parser.parse_args()
 
-    trigger_options(results.m, "m=", "1e-5", "1e-4", "1e-3")
-    trigger_options(results.mu, "mu=", "1e-5", "1e-4", "1e-3")
-    trigger_options(results.r, "r=", "1e-5", "1e-4", "1e-3")
-    trigger_options(results.phi, "phi=", "5", "4", "3")
+    m = trigger_options(results.m, "m=", "1e-5", "1e-4", "1e-3")
+    mu = trigger_options(results.mu, "mu=", "1e-5", "1e-4", "1e-3")
+    r = trigger_options(results.r, "r=", "1e-5", "1e-4", "1e-3")
+    phi = trigger_options(results.phi, "phi=", "5", "4", "3")
 
     params_list = [x for x in product(m, mu, r, phi)]
     popen_scaffold = 'slim -d "{}" -d "{}" -d "{}" -d "{}" -d "{}" local_adaptation.slim'
