@@ -98,7 +98,7 @@ def main():
     phi = ["phi=5"]  # fitness
 
     params_list = [x for x in product(m, mu, r, phi)]
-    popen_unformatted = 'slim -d "{}" -d "{}" -d "{}" -d "{}" -d "{}" -d "{}" practice/local_adaptation.slim'
+    popen_unformatted = 'slim -d "{}" -d "{}" -d "{}" -d "{}" -d "{}" -d "{}" local_adaptation.slim'
 
     output_every = "outputEvery=750"
     outfile_path = "stdout='/Users/jamesbain/Documents/research/simulations/practice/output/{}'"
