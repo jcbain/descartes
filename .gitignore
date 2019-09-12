@@ -1,0 +1,8 @@
+venv/*
+.idea
+.DS_Store
+
+practice/output/*
+practice/APCD_0.7.slim
+practice/play.slim
+practice/2deme_migsel.slim
