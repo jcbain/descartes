@@ -103,7 +103,7 @@ def main():
     output_every = "outputEvery=750"
     outfile_path = "stdout='/Users/jamesbain/Documents/research/simulations/practice/output/{}'"
 
-   output_list = []
+    output_list = []
     for params in params_list:
         popen_string = popen_unformatted.format(params[0], params[1], params[2], params[3], output_every,
                                                 outfile_path)
