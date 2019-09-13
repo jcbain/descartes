@@ -24,3 +24,9 @@ class TestParseOutput:
     def test_data_extraction(self):
         data_elements = dispatcher.parse_output(tmp_string, 1)[0]
         assert data_elements[0] == '20001 -0.020159 0 283 370 1e-05 1e-05 1e-05 5 500 1'
+
+    def test_header_configuration(self):
+        header_element = dispatcher.parse_output(tmp_string, 0)[1]
+        assert header_element == 'position select_coef p1_freq p2_freq fixed_since migr_rate mut_rate recomb_rate ' \
+                                 'fitness_width output_gen '
+
