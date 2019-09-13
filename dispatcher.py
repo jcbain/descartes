@@ -141,7 +141,7 @@ def main():
     output_every = "outputEvery=750"
 
     output_list = []
-    for params in params_list:
+    for ind, params in enumerate(params_list):
         popen_string = popen_scaffold.format(params[0], params[1], params[2], params[3], output_every)
         rep_list = []
         for rep in range(results.rep):
@@ -149,17 +149,17 @@ def main():
                                        universal_newlines=True)
             out, err = process.communicate()
             rep_list.append(parse_output(out, rep)[0])
-    #
-    #         if rep == 0:
-    #             header = parse_output(out, rep)[1] + "rep"
-    #
-    #         if len(err) > 0:
-    #             print(err)
+
+            if ind == 0 and rep == 0:
+                header = parse_output(out, rep)[1] + "rep"
+
+            # if len(err) > 0:
+            #     print(err)
 
         flat_reps = '\n'.join([i for sublist in rep_list for i in sublist])
         output_list.append(flat_reps)
     # print(output_list)
-    # print(header)
+    print(header)
     print('\n'.join(output_list))
 
 
