@@ -127,18 +127,18 @@ def main():
     parser.add_argument('--m', action='store', type=bool, default=False)
     parser.add_argument('--mu', action='store', type=bool, default=False)
     parser.add_argument('--r', action='store', type=bool, default=False)
-    parser.add_argument('--phi', action='store', type=bool, default=False)
+    parser.add_argument('--sigsqr', action='store', type=bool, default=False)
     results = parser.parse_args()
 
-    m = trigger_options(results.m, "m=", "1e-5", "1e-4", "1e-3")
-    mu = trigger_options(results.mu, "mu=", "1e-5", "1e-4", "1e-3")
-    r = trigger_options(results.r, "r=", "1e-5", "1e-4", "1e-3")
-    phi = trigger_options(results.phi, "phi=", "5", "4", "3")
+    m = trigger_options(results.m, "m=", "1e-5", "1e-4", "1e-3", "1e-2")
+    mu = trigger_options(results.mu, "mu=", "1e-6", "1e-5", "1e-4")
+    r = trigger_options(results.r, "r=", "1e-6", "1e-7", "1e-8")
+    sigsqr = trigger_options(results.phi, "sigsqr=", "5", "2", "25")
 
-    params_list = [x for x in product(m, mu, r, phi)]
+    params_list = [x for x in product(m, mu, r, sigsqr)]
     popen_scaffold = 'slim -d "{}" -d "{}" -d "{}" -d "{}" -d "{}" local_adaptation.slim'
 
-    output_every = "outputEvery=750"
+    output_every = "outputEvery=2500"
 
     output_list = []
     for ind, params in enumerate(params_list):

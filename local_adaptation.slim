@@ -1,12 +1,12 @@
 // initialize genetic architecture of local adaptation
 initialize() {
 	if (exists("slimgui")) {
-		defineConstant("m", 1e-5);   // migration rate
-		defineConstant("r", 1e-5);   // recombination rate
+		defineConstant("m", 1e-2);   // migration rate
+		defineConstant("r", 1e-6);   // recombination rate
 		defineConstant("mu", 1e-5);  // mutation rate
-		defineConstant("phi", 5);    // fitness
+		defineConstant("sigsqr", 5);    // width of fitness function
 		
-		defineConstant("outputEvery", 500);
+		defineConstant("outputEvery", 1000);
 		
 		// standard streams
 //		defineConstant("stdout", "/Users/jamesbain/Documents/research/simulations/practice/output/");
@@ -108,7 +108,7 @@ initialize() {
 	initializeRecombinationRate(r);
 
 	m1.convertToSubstitution = F;
-	m1.mutationStackPolicy = "s";  // ??? what does this mean again
+	m1.mutationStackPolicy = "s";  
 }
 
 // create a subpopulations of size N individuals
@@ -142,14 +142,14 @@ fitness(m1) {
 //Gaussian fitness function
 
 fitness(NULL, p1) {
-	return exp(-1* (1 - individual.z)^2 / (2*phi));
+	return exp(-1* (1 - individual.z)^2 / (2*sigsqr));
 }
 
 fitness(NULL, p2) {
-	return exp(-1* (-1 - individual.z)^2 / (2*phi));
+	return exp(-1* (-1 - individual.z)^2 / (2*siqsqr));
 }
 
-1:1500 late(){
+1:5000 late(){
 	if (sim.generation % outputEvery == 0){
 		genomes			= sim.subpopulations.genomes;
 		muts				= sortBy(unique(c(genomes.mutationsOfType(m1))), "position");
