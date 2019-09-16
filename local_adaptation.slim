@@ -9,7 +9,7 @@ initialize() {
 		defineConstant("outputEvery", 500);
 		
 		// standard streams
-		defineConstant("stdout", "/Users/jamesbain/Documents/research/simulations/practice/output/");
+//		defineConstant("stdout", "/Users/jamesbain/Documents/research/simulations/practice/output/");
 	}
 	
 	// fixed params
@@ -117,8 +117,8 @@ initialize() {
 	sim.addSubpop("p1", N);
 	sim.addSubpop("p2", N);
 	
-	p1.setMigrationRates(p2,m);
-	p2.setMigrationRates(p1,m);	
+	p1.setMigrationRates(p2, m);
+	p2.setMigrationRates(p1, m);	
 }
 
 1: late() {
@@ -166,17 +166,6 @@ fitness(NULL, p2) {
 //		writeFile(paste(c(stdout, "tmp_", sim.generation, ".txt"), sep=""), out_m);
 	
 	}
-//	    
-//    	print(sim.generation);
-//    	sim.outputFull();
-//    	genomes 			= sim.subpopulations.genomes;
-//    	muts 				= sortBy(unique(c(genomes.mutationsOfType(m1))), "position");
-//    	mut_freqs_p1 	= sim.mutationFrequencies(p1, muts);
-//    	mut_freqs_p2 	= sim.mutationFrequencies(p2, muts);
-//    	print(muts.selectionCoeff);
-////    	print(genomes.mutationsOfType(m1));
 
-//   	print(paste(c("pop1", mut_freqs_p1)));
-//   	print(paste(c("pop2", mut_freqs_p2)));
 	
 }
