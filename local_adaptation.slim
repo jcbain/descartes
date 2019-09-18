@@ -146,7 +146,7 @@ fitness(NULL, p1) {
 }
 
 fitness(NULL, p2) {
-	return exp(-1* (-1 - individual.z)^2 / (2*siqsqr));
+	return exp(-1* (-1 - individual.z)^2 / (2*sigsqr));
 }
 
 1:5000 late(){
@@ -159,7 +159,7 @@ fitness(NULL, p2) {
 		out_m 			= "position " + "select_coef " + "p1_freq " + "p2_freq " + "fixed_since " +  "migr_rate " + "mut_rate " + "recomb_rate " + "fitness_width " + "output_gen " + "\n";
 		
 		for (i in 0:(size(muts)-1)){
-			out_m = out_m + muts.position[i] + " " + muts.selectionCoeff[i] + " " + mut_freqs_p1[i] + " " + mut_freqs_p2[i] + " " + muts.originGeneration[i] + " " + m + " " + mu + " " + r + " " + phi + " " + sim.generation + "\n";
+			out_m = out_m + muts.position[i] + " " + muts.selectionCoeff[i] + " " + mut_freqs_p1[i] + " " + mut_freqs_p2[i] + " " + muts.originGeneration[i] + " " + m + " " + mu + " " + r + " " + sigsqr + " " + sim.generation + "\n";
 		}
 		print(out_m);
 		

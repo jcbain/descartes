@@ -133,7 +133,7 @@ def main():
     m = trigger_options(results.m, "m=", "1e-5", "1e-4", "1e-3", "1e-2")
     mu = trigger_options(results.mu, "mu=", "1e-6", "1e-5", "1e-4")
     r = trigger_options(results.r, "r=", "1e-6", "1e-7", "1e-8")
-    sigsqr = trigger_options(results.phi, "sigsqr=", "5", "2", "25")
+    sigsqr = trigger_options(results.sigsqr, "sigsqr=", "5", "2", "25")
 
     params_list = [x for x in product(m, mu, r, sigsqr)]
     popen_scaffold = 'slim -d "{}" -d "{}" -d "{}" -d "{}" -d "{}" local_adaptation.slim'
@@ -153,8 +153,8 @@ def main():
             if ind == 0 and rep == 0:
                 header = parse_output(out, rep)[1] + "rep"
 
-            # if len(err) > 0:
-            #     print(err)
+            if len(err) > 0:
+                print(err)
 
         flat_reps = '\n'.join([i for sublist in rep_list for i in sublist])
         output_list.append(flat_reps)
