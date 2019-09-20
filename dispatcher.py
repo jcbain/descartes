@@ -158,7 +158,6 @@ def main():
 
         flat_reps = '\n'.join([i for sublist in rep_list for i in sublist])
         output_list.append(flat_reps)
-    # print(output_list)
     print(header)
     print('\n'.join(output_list))
 
