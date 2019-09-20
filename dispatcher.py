@@ -180,9 +180,10 @@ def main():
 
         flat_reps = '\n'.join([i for sublist in rep_list for i in sublist])
 
-        with open(cwd + file_name, "w") as f:
-            f.write(header + "\n")
-            f.write(flat_reps)
+        if not results.concat:
+            with open(cwd + file_name, "w") as f:
+                f.write(header + "\n")
+                f.write(flat_reps)
 
         output_list.append(flat_reps)
 
