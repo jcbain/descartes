@@ -2,6 +2,7 @@ from __future__ import print_function
 import subprocess
 import argparse
 import os
+import re
 
 from itertools import product
 
@@ -109,6 +110,25 @@ def trigger_options(opt_on, param_str, *opts):
     return call
 
 
+def create_file_name(x):
+    """
+    Creates a file name from the given parameter set.
+
+    Parameters
+    ----------
+    x: list
+        A set of parameter options.
+
+    Returns
+    -------
+    file_name: str
+        A file name string.
+    """
+    cleaned_x = map(lambda y: re.sub("=", "", y), x)
+    file_name = "_".join(list(cleaned_x)) + ".txt"
+    return file_name
+
+
 def main():
     """
     Provides a wrapper around the slim command and runs a file for simulating local adaptation called
@@ -143,6 +163,7 @@ def main():
     output_list = []
     for ind, params in enumerate(params_list):
         popen_string = popen_scaffold.format(params[0], params[1], params[2], params[3], output_every)
+        file_name = create_file_name(params)
         rep_list = []
         for rep in range(results.rep):
             process = subprocess.Popen([popen_string], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
@@ -157,9 +178,11 @@ def main():
                 print(err)
 
         flat_reps = '\n'.join([i for sublist in rep_list for i in sublist])
+        print(file_name)
+        print(flat_reps)
         output_list.append(flat_reps)
-    print(header)
-    print('\n'.join(output_list))
+    # print(header)
+    # print('\n'.join(output_list))
 
 
 if __name__ == "__main__":
