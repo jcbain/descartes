@@ -134,6 +134,11 @@ def main():
     Provides a wrapper around the slim command and runs a file for simulating local adaptation called
     `local_adaptation.slim`. This file can be run from the command line with the falling named arguments:
     --rep : The number of replicates you want to run.
+    --m : An option to run a series of migration rates.
+    --mu : An option to run a series of mutation rates.
+    --r : An option to run a series of recombination rates.
+    --sigsqr: An option to run a series of fitness widths.
+    --concat: An option to concatenate all the results into one print statement.
 
     Returns
     -------
