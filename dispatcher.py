@@ -148,6 +148,7 @@ def main():
     parser.add_argument('--mu', action='store', type=bool, default=False)
     parser.add_argument('--r', action='store', type=bool, default=False)
     parser.add_argument('--sigsqr', action='store', type=bool, default=False)
+    parser.add_argument('--concat', action='store', type=bool, default=False)
     results = parser.parse_args()
 
     m = trigger_options(results.m, "m=", "1e-5", "1e-4", "1e-3", "1e-2")
@@ -178,11 +179,16 @@ def main():
                 print(err)
 
         flat_reps = '\n'.join([i for sublist in rep_list for i in sublist])
-        print(file_name)
-        print(flat_reps)
+
+        with open(cwd + file_name, "w") as f:
+            f.write(header + "\n")
+            f.write(flat_reps)
+
         output_list.append(flat_reps)
-    # print(header)
-    # print('\n'.join(output_list))
+
+    if results.concat:
+        print(header)
+        print('\n'.join(output_list))
 
 
 if __name__ == "__main__":
