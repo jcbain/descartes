@@ -5,6 +5,7 @@ import os
 import re
 
 from itertools import product
+from time import gmtime, strftime
 
 
 def remove_all(x, *items):
@@ -145,6 +146,8 @@ def main():
         A call to the slim command running the script `local_adaptation.slim`
     """
     cwd = os.getcwd() + '/'
+    output_dir = cwd + 'run' + strftime("%Y%m%d_%H%M%S", gmtime()) + '/'
+    os.mkdir(output_dir)
 
     parser = argparse.ArgumentParser()
 
@@ -186,7 +189,7 @@ def main():
         flat_reps = '\n'.join([i for sublist in rep_list for i in sublist])
 
         if not results.concat:
-            with open(cwd + file_name, "w") as f:
+            with open(output_dir + file_name, "w") as f:
                 f.write(header + "\n")
                 f.write(flat_reps)
 
