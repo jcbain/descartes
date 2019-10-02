@@ -153,8 +153,8 @@ fitness(NULL, p2) {
 	if (sim.generation % outputEvery == 0){
 		genomes			= sim.subpopulations.genomes;
 		muts				= sortBy(unique(c(genomes.mutationsOfType(m1))), "position");
-		mut_freqs_p1	= sim.mutationFrequencies(p1, muts) * (2*N);
-		mut_freqs_p2	= sim.mutationFrequencies(p2, muts) * (2*N);
+		mut_freqs_p1	= sim.mutationFrequencies(p1, muts);
+		mut_freqs_p2	= sim.mutationFrequencies(p2, muts);
 		
 		out_m 			= "position " + "select_coef " + "p1_freq " + "p2_freq " + "fixed_since " +  "migr_rate " + "mut_rate " + "recomb_rate " + "fitness_width " + "output_gen " + "\n";
 		
