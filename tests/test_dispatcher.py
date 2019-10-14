@@ -27,6 +27,6 @@ class TestParseOutput:
 
     def test_header_configuration(self):
         header_element = dispatcher.parse_output(tmp_string, 0)[1]
-        assert header_element == 'position select_coef p1_freq p2_freq fixed_since migr_rate mut_rate recomb_rate ' \
+        assert header_element == 'position select_coef p1_freq p2_freq orig_gen migr_rate mut_rate recomb_rate ' \
                                  'fitness_width output_gen '
 
