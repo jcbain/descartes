@@ -161,19 +161,19 @@ fitness(NULL, p2) {
 		for (i in 0:(size(muts)-1)){
 			out_m = out_m + muts.position[i] + " " + muts.selectionCoeff[i] + " " + mut_freqs_p1[i] + " " + mut_freqs_p2[i] + " " + muts.originGeneration[i] + " " + m + " " + mu + " " + r + " " + sigsqr + " " + sim.generation + "\n";
 		}
+//		
+//		out_p          = "pop " + "phen " + "migr_rate " + "mut_rate " + "recomb_rate " + "fitness_width " + "output_gen " + "\n";
+//		
+//		for (pop in c(0,1)){
+//		   for (ind in sim.subpopulations[pop].individuals){
+//		      out_p = out_p + pop + " " + ind.sumOfMutationsOfType(m1) + " " + muts.originGeneration[i] + " " + m + " " + mu + " " + r + " " + sigsqr + " " + sim.generation + "\n";
+//		   }
+//		}
 		
-		out_p          = "pop " + "phen " + "migr_rate " + "mut_rate " + "recomb_rate " + "fitness_width " + "output_gen " + "\n";
-		
-		for (pop in c(0,1)){
-		   for (ind in sim.subpopulations[pop].individuals){
-		      out_p = out_p + pop + " " + ind.sumOfMutationsOfType(m1) + " " + muts.originGeneration[i] + " " + m + " " + mu + " " + r + " " + sigsqr + " " + sim.generation + "\n";
-		   }
-		}
-		
-		print("mutations");
+//		print("mutations");
 		print(out_m);
-		print("phenotype");
-		print(out_p);
+//		print("phenotype");
+//		print(out_p);
 		
 //		print("something");
 //		print(p2.individuals.z);
