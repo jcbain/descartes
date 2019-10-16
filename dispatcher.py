@@ -30,6 +30,31 @@ def remove_all(x, *items):
     return x
 
 
+def find_dataset(output_list, identifier):
+    """
+    Finds specified data set with the search of beginning strings used to delimit specific types of output.
+
+    Parameters
+    ----------
+    output_list: list
+        A list of strings containing the body of data where each relevant string begins with a keyword to denote that it
+        belongs to a certain data set.
+
+    identifier: str
+        The identifying string for the specific data set. Each line in the data set should begin with this string.
+
+    Returns
+    -------
+    found_output: list
+        A list of the relevant data set rows with the `identifier` string removed from the beginning.
+
+    """
+    alt_identifier = '"' + identifier
+    found_output = [re.sub('"?{} '.format(identifier), '', i) for i in output_list if i.startswith(identifier) or
+                    i.startswith(alt_identifier)]
+    return found_output
+
+
 def parse_output(output, rep):
     """
     Parses the data of the stdout from the slim script.
