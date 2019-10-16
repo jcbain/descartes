@@ -137,7 +137,7 @@ def trigger_options(opt_on, param_str, *opts):
     return call
 
 
-def create_file_name(x):
+def create_file_name(x, dataset):
     """
     Creates a file name from the given parameter set.
 
@@ -145,6 +145,8 @@ def create_file_name(x):
     ----------
     x: list
         A set of parameter options.
+    dataset: str
+        A particular dataset parsed from the output of slim.
 
     Returns
     -------
@@ -152,8 +154,45 @@ def create_file_name(x):
         A file name string.
     """
     cleaned_x = map(lambda y: re.sub("=", "", y), x)
-    file_name = "_".join(list(cleaned_x)) + ".txt"
+    file_name = "_".join(list(cleaned_x)) + "_" + dataset + ".txt"
     return file_name
+
+
+def convert_popen_to_data(params_list, popen_scaffold, output_every, output_dir, datasets, num_reps):
+    datasets_dict = {
+        'phenotypes': 'p33',
+        'mutations': 'm39'
+    }
+
+    for ind, params in enumerate(params_list):
+        popen_string = popen_scaffold.format(params[0], params[1], params[2], params[3], output_every)
+
+        file_name_dict = {}
+        rep_list_dict = {}
+        for d in datasets:
+            file_name_dict[d] = create_file_name(params, d)
+            rep_list_dict[d] = []
+
+        for rep in range(num_reps):
+            process = subprocess.Popen([popen_string], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                                       universal_newlines=True)
+            out, err = process.communicate()
+
+            for d in datasets:
+                rep_list_dict[d].append(parse_output(out, datasets_dict[d], rep)[0])
+
+                header_dict = {}
+                header_dict[d] = parse_output(out, datasets_dict[d], rep)[1] + "rep"
+
+            flat_reps_dict = {}
+            for d in datasets:
+                flat_reps_dict[d] = '\n'.join([i for sublist in rep_list_dict[d] for i in sublist])
+                with open(output_dir + file_name_dict[d], "w") as f:
+                    # f.write(header_dict[d] + "\n")
+                    f.write(flat_reps_dict[d])
+
+            if len(err) > 0:
+                print(err)
 
 
 def main():
@@ -182,6 +221,7 @@ def main():
     parser.add_argument('--mu', action='store', type=bool, default=False)
     parser.add_argument('--r', action='store', type=bool, default=False)
     parser.add_argument('--sigsqr', action='store', type=bool, default=False)
+    parser.add_argument('--datasets', nargs='+', default=['mutations', 'phenotypes'])
     parser.add_argument('--concat', action='store', type=bool, default=False)
     results = parser.parse_args()
 
@@ -195,35 +235,37 @@ def main():
 
     output_every = "outputEvery=2500"
 
-    output_list = []
-    for ind, params in enumerate(params_list):
-        popen_string = popen_scaffold.format(params[0], params[1], params[2], params[3], output_every)
-        file_name = create_file_name(params)
-        rep_list = []
-        for rep in range(results.rep):
-            process = subprocess.Popen([popen_string], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
-                                       universal_newlines=True)
-            out, err = process.communicate()
-            rep_list.append(parse_output(out, rep)[0])
+    convert_popen_to_data(params_list, popen_scaffold, output_every, output_dir, results.datasets, results.rep)
 
-            if ind == 0 and rep == 0:
-                header = parse_output(out, rep)[1] + "rep"
-
-            if len(err) > 0:
-                print(err)
-
-        flat_reps = '\n'.join([i for sublist in rep_list for i in sublist])
-
-        if not results.concat:
-            with open(output_dir + file_name, "w") as f:
-                f.write(header + "\n")
-                f.write(flat_reps)
-
-        output_list.append(flat_reps)
-
-    if results.concat:
-        print(header)
-        print('\n'.join(output_list))
+    # output_list = []
+    # for ind, params in enumerate(params_list):
+    #     popen_string = popen_scaffold.format(params[0], params[1], params[2], params[3], output_every)
+    #     file_name = create_file_name(params)
+    #     rep_list = []
+    #     for rep in range(results.rep):
+    #         process = subprocess.Popen([popen_string], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+    #                                    universal_newlines=True)
+    #         out, err = process.communicate()
+    #         rep_list.append(parse_output(out, rep)[0])
+    #
+    #         if ind == 0 and rep == 0:
+    #             header = parse_output(out, rep)[1] + "rep"
+    #
+    #         if len(err) > 0:
+    #             print(err)
+    #
+    #     flat_reps = '\n'.join([i for sublist in rep_list for i in sublist])
+    #
+    #     if not results.concat:
+    #         with open(output_dir + file_name, "w") as f:
+    #             f.write(header + "\n")
+    #             f.write(flat_reps)
+    #
+    #     output_list.append(flat_reps)
+    #
+    # if results.concat:
+    #     print(header)
+    #     print('\n'.join(output_list))
 
 
 if __name__ == "__main__":
