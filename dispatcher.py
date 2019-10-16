@@ -39,7 +39,6 @@ def find_dataset(output_list, identifier):
     output_list: list
         A list of strings containing the body of data where each relevant string begins with a keyword to denote that it
         belongs to a certain data set.
-
     identifier: str
         The identifying string for the specific data set. Each line in the data set should begin with this string.
 
@@ -55,7 +54,7 @@ def find_dataset(output_list, identifier):
     return found_output
 
 
-def parse_output(output, rep):
+def parse_output(output, identifier, rep):
     """
     Parses the data of the stdout from the slim script.
 
@@ -63,6 +62,8 @@ def parse_output(output, rep):
     ----------
     output: str
         The stdout from the slim script.
+    identifier: str
+        Identifying string of the given data set. See documentation for `find_dataset`.
     rep: int
         The replicate number.
 
@@ -75,9 +76,9 @@ def parse_output(output, rep):
     split_output = output.split("// Starting run at generation <start>:\n1")
     meta, body = split_output[0], split_output[1]
     body = body.split("\n")
-    header = body[2]
-    body = remove_all(body, header, '', ' ', '"')
-    header = header.replace('"', '')
+    body = find_dataset(body, identifier)
+    header = body[0]
+    body = remove_all(body, header)
     body = [i + " {}".format(rep) for i in body]
     return body, header, meta
 
