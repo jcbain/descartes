@@ -159,20 +159,25 @@ def create_file_name(x, dataset):
 
 
 def convert_popen_to_data(params_list, popen_scaffold, output_every, output_dir, datasets, num_reps):
+    # dictionary to map code to dataset name
     datasets_dict = {
         'phenotypes': 'p33',
         'mutations': 'm39'
     }
 
     for ind, params in enumerate(params_list):
+
+        # create the string command to be run
         popen_string = popen_scaffold.format(params[0], params[1], params[2], params[3], output_every)
 
+        # file and dataset rep dictionary calls
         file_name_dict = {}
         rep_list_dict = {}
         for d in datasets:
             file_name_dict[d] = create_file_name(params, d)
             rep_list_dict[d] = []
 
+        # run the command for n replicates
         for rep in range(num_reps):
             process = subprocess.Popen([popen_string], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                                        universal_newlines=True)
@@ -222,7 +227,7 @@ def main():
     parser.add_argument('--r', action='store', type=bool, default=False)
     parser.add_argument('--sigsqr', action='store', type=bool, default=False)
     parser.add_argument('--datasets', nargs='+', default=['mutations', 'phenotypes'])
-    parser.add_argument('--concat', action='store', type=bool, default=False)
+    # parser.add_argument('--concat', action='store', type=bool, default=False)
     results = parser.parse_args()
 
     m = trigger_options(results.m, "m=", "1e-5", "1e-4", "1e-3", "1e-2")
