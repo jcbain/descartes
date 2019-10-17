@@ -227,7 +227,6 @@ def main():
     parser.add_argument('--r', action='store', type=bool, default=False)
     parser.add_argument('--sigsqr', action='store', type=bool, default=False)
     parser.add_argument('--datasets', nargs='+', default=['mutations', 'phenotypes'])
-    # parser.add_argument('--concat', action='store', type=bool, default=False)
     results = parser.parse_args()
 
     m = trigger_options(results.m, "m=", "1e-5", "1e-4", "1e-3", "1e-2")
@@ -241,36 +240,6 @@ def main():
     output_every = "outputEvery=2500"
 
     convert_popen_to_data(params_list, popen_scaffold, output_every, output_dir, results.datasets, results.rep)
-
-    # output_list = []
-    # for ind, params in enumerate(params_list):
-    #     popen_string = popen_scaffold.format(params[0], params[1], params[2], params[3], output_every)
-    #     file_name = create_file_name(params)
-    #     rep_list = []
-    #     for rep in range(results.rep):
-    #         process = subprocess.Popen([popen_string], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
-    #                                    universal_newlines=True)
-    #         out, err = process.communicate()
-    #         rep_list.append(parse_output(out, rep)[0])
-    #
-    #         if ind == 0 and rep == 0:
-    #             header = parse_output(out, rep)[1] + "rep"
-    #
-    #         if len(err) > 0:
-    #             print(err)
-    #
-    #     flat_reps = '\n'.join([i for sublist in rep_list for i in sublist])
-    #
-    #     if not results.concat:
-    #         with open(output_dir + file_name, "w") as f:
-    #             f.write(header + "\n")
-    #             f.write(flat_reps)
-    #
-    #     output_list.append(flat_reps)
-    #
-    # if results.concat:
-    #     print(header)
-    #     print('\n'.join(output_list))
 
 
 if __name__ == "__main__":
