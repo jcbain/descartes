@@ -171,8 +171,8 @@ def convert_popen_to_data(params_list, popen_scaffold, output_every, output_dir,
         popen_string = popen_scaffold.format(params[0], params[1], params[2], params[3], output_every)
 
         # file and dataset rep dictionary calls
-        file_name_dict = {}
-        rep_list_dict = {}
+        file_name_dict = dict()
+        rep_list_dict = dict()
         for d in datasets:
             file_name_dict[d] = create_file_name(params, d)
             rep_list_dict[d] = []
@@ -183,17 +183,17 @@ def convert_popen_to_data(params_list, popen_scaffold, output_every, output_dir,
                                        universal_newlines=True)
             out, err = process.communicate()
 
+            header_dict = dict()
             for d in datasets:
                 rep_list_dict[d].append(parse_output(out, datasets_dict[d], rep)[0])
 
-                header_dict = {}
                 header_dict[d] = parse_output(out, datasets_dict[d], rep)[1] + "rep"
 
             flat_reps_dict = {}
             for d in datasets:
                 flat_reps_dict[d] = '\n'.join([i for sublist in rep_list_dict[d] for i in sublist])
                 with open(output_dir + file_name_dict[d], "w") as f:
-                    # f.write(header_dict[d] + "\n")
+                    f.write(header_dict[d] + "\n")
                     f.write(flat_reps_dict[d])
 
             if len(err) > 0:
