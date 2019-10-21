@@ -170,20 +170,20 @@ fitness(NULL, p2) {
 		   }
 		}
 		
-		   out_g1             = "g36 " + "pop " + "ind_id " + "mutation_id " + "select_coef " + "position " + "\n";
+		   out_g1             = "g36 " + "pop " + "ind_id " + "mutation_id " + "select_coef " + "position " + "output_gen " + "\n";
    for (pop in c(0,1)){
       for (ind in sim.subpopulations[pop].individuals){
          for (ms in ind.genome1.mutations){
-             out_g1 = out_g1 + "g36 " + pop + " " + ind.index + " " + ms.id + " " + ms.selectionCoeff + " " + ms.position + " \n"; 
+             out_g1 = out_g1 + "g36 " + pop + " " + ind.index + " " + ms.id + " " + ms.selectionCoeff + " " + ms.position + " " + sim.generation + " \n"; 
          }
       }
       }
       
-   out_g2             = "g30 " + "pop " + "ind_id " + "mutation_id " + "select_coef " + "position "  + "\n";
+   out_g2             = "g30 " + "pop " + "ind_id " + "mutation_id " + "select_coef " + "position " + "output_gen " + "\n";
       for (pop in c(0,1)){
          for (ind in sim.subpopulations[pop].individuals){
             for (ms in ind.genome2.mutations){
-                out_g2 = out_g2 + "g30 " + pop + " " + ind.index + " " + ms.id + " " + ms.selectionCoeff + " " + ms.position + " \n"; 
+                out_g2 = out_g2 + "g30 " + pop + " " + ind.index + " " + ms.id + " " + ms.selectionCoeff + " " + ms.position  + " " + sim.generation +  " \n"; 
             }
          }
       }
