@@ -83,6 +83,26 @@ def parse_output(output, identifier, rep):
     return body, header, meta
 
 
+
+def parse_meta(meta):
+    meta_list = meta.split('\n')
+    search_list = [re.search('initializeGenomicElement\((g\d+, \d*, \d*)\);', i) for i in meta_list]
+    matches = [i.group(1) for i in search_list if i is not None]
+    matches_labels = ["{}, {}".format(i, matches.index(i)) for i in matches]
+    split_list = [i.split(', ') for i in matches_labels]
+
+    gene_bases = []
+    for i in split_list:
+        gene_bases.append(list(range(int(i[1]), int(i[2]) + 1)))
+
+    out_list = []
+    for i, bases in enumerate(gene_bases):
+        for b in bases:
+            out_list.append([split_list[i][0], b, split_list[i][3]])
+
+    return out_list
+
+
 def create_params(param_str, *opts):
     """
     Creates a list of explicit simulation parameter options for a single parameter.
