@@ -84,6 +84,20 @@ def parse_output(output, identifier, rep):
 
 
 def parse_fullgenome(meta):
+    """
+    Parses the meta data to collect the full genome.
+
+    Parameters
+    ----------
+    meta: str
+        The meta data output from `parse_output` or the third item of tuple of the `parse_output` function.
+
+    Returns
+    -------
+    out_list: list
+        Returns a list where each base position is contained within its own list. The corresponding items within the
+        list of lists are the genome, base and gene.
+    """
     meta_list = meta.split('\n')
     search_list = [re.search('initializeGenomicElement\((g\d+, \d*, \d*)\);', i) for i in meta_list]
     matches = [i.group(1) for i in search_list if i is not None]
@@ -178,6 +192,24 @@ def create_file_name(x, dataset):
 
 
 def convert_popen_to_data(params_list, popen_scaffold, output_every, output_dir, datasets, num_reps):
+    """
+    Turns popen output into workable data.
+
+    Parameters
+    ----------
+    params_list: list
+        A list of parameters to have set for the simulation.
+    popen_scaffold: str
+        A string of the scaffolding provided to run the slim command with the given parameters of the params_list.
+    output_every: str
+        A parameter setting specifying when output is written.
+    output_dir
+        The directory to save the output to.
+    datasets
+        The name of the dataset that is being written. This corresponds to different levels of aggregation of output.
+    num_reps
+        The number of replicates to run per simulation.
+    """
     # dictionary to map code to dataset name
     datasets_dict = {
         'phenotypes': 'p33',
