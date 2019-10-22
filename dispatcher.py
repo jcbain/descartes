@@ -83,8 +83,7 @@ def parse_output(output, identifier, rep):
     return body, header, meta
 
 
-
-def parse_meta(meta):
+def parse_fullgenome(meta):
     meta_list = meta.split('\n')
     search_list = [re.search('initializeGenomicElement\((g\d+, \d*, \d*)\);', i) for i in meta_list]
     matches = [i.group(1) for i in search_list if i is not None]
@@ -200,16 +199,26 @@ def convert_popen_to_data(params_list, popen_scaffold, output_every, output_dir,
             rep_list_dict[d] = []
 
         # run the command for n replicates
+        meta_dict = dict()
         for rep in range(num_reps):
             process = subprocess.Popen([popen_string], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                                        universal_newlines=True)
             out, err = process.communicate()
 
             header_dict = dict()
-            for d in datasets:
-                rep_list_dict[d].append(parse_output(out, datasets_dict[d], rep)[0])
 
-                header_dict[d] = parse_output(out, datasets_dict[d], rep)[1] + "rep"
+            for d in datasets:
+                body, header, meta = parse_output(out, datasets_dict[d], rep)
+                rep_list_dict[d].append(body)
+
+                header_dict[d] = header + "rep"
+
+                if not bool(meta_dict):
+                    meta_dict['meta'] = parse_fullgenome(meta)
+                    meta_file = create_file_name(params, "fullgenome")
+                    with open(output_dir + meta_file, "w") as f:
+                        f.write("genome position gene\n")
+                        f.write('\n'.join([' '.join(list(map(lambda x: str(x), i))) for i in meta_dict['meta']]))
 
             flat_reps_dict = {}
             for d in datasets:
