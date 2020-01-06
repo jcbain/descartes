@@ -1,4 +1,0 @@
-/cvmfs/soft.computecanada.ca/easybuild/software/2017/Core/python/3.5.4/bin/python3 dispatcher_single.py --reps 3 --datasets genome1 genome2
-/cvmfs/soft.computecanada.ca/easybuild/software/2017/Core/python/3.5.4/bin/python3 dispatcher_single.py --reps 3 --datasets genome1 genome2 --m "1e-4"
-/cvmfs/soft.computecanada.ca/easybuild/software/2017/Core/python/3.5.4/bin/python3 dispatcher_single.py --reps 3 --datasets genome1 genome2 --m "1e-3"
-/cvmfs/soft.computecanada.ca/easybuild/software/2017/Core/python/3.5.4/bin/python3 dispatcher_single.py --reps 3 --datasets genome1 genome2 --m "1e-2"
