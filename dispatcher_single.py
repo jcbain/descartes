@@ -284,7 +284,7 @@ def main():
 
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('--rep', action='store', type=int, default=5)
+    parser.add_argument('--rep', action='store', type=int, default=3)
     parser.add_argument('--m', action='store', type=str, default="1e-5")
     parser.add_argument('--mu', action='store', type=str, default="1e-6")
     parser.add_argument('--r', action='store', type=str, default="1e-6")
