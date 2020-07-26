@@ -9,4 +9,4 @@ sigsqr = create_params("sigsqr=", "5", "2", "25")
 params_list = [x for x in product(m, mu, r, sigsqr)]
 
 for perm in params_list:
-    print(perm)
+    print(' '.join([f'--{opt}' for opt in perm]))
