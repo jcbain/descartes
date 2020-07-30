@@ -3,7 +3,7 @@
 --m=1e-5 --mu=1e-6 --r=1e-6 --sigsqr=25 run20200724_165847
 --m=1e-5 --mu=1e-6 --r=1e-7 --sigsqr=5  run20200726_202739
 --m=1e-5 --mu=1e-6 --r=1e-7 --sigsqr=2  run20200727_160513
---m=1e-5 --mu=1e-6 --r=1e-7 --sigsqr=25 run20200728_161422*
+--m=1e-5 --mu=1e-6 --r=1e-7 --sigsqr=25 run20200728_161422
 --m=1e-5 --mu=1e-6 --r=1e-8 --sigsqr=5
 --m=1e-5 --mu=1e-6 --r=1e-8 --sigsqr=2
 --m=1e-5 --mu=1e-6 --r=1e-8 --sigsqr=25
@@ -25,9 +25,9 @@
 --m=1e-5 --mu=1e-4 --r=1e-8 --sigsqr=5
 --m=1e-5 --mu=1e-4 --r=1e-8 --sigsqr=2
 --m=1e-5 --mu=1e-4 --r=1e-8 --sigsqr=25
---m=1e-4 --mu=1e-6 --r=1e-6 --sigsqr=5 q
---m=1e-4 --mu=1e-6 --r=1e-6 --sigsqr=2
---m=1e-4 --mu=1e-6 --r=1e-6 --sigsqr=25
+--m=1e-4 --mu=1e-6 --r=1e-6 --sigsqr=5 run20200728_193355
+--m=1e-4 --mu=1e-6 --r=1e-6 --sigsqr=2 q
+--m=1e-4 --mu=1e-6 --r=1e-6 --sigsqr=25 q2
 --m=1e-4 --mu=1e-6 --r=1e-7 --sigsqr=5
 --m=1e-4 --mu=1e-6 --r=1e-7 --sigsqr=2
 --m=1e-4 --mu=1e-6 --r=1e-7 --sigsqr=25
@@ -52,7 +52,7 @@
 --m=1e-4 --mu=1e-4 --r=1e-8 --sigsqr=5
 --m=1e-4 --mu=1e-4 --r=1e-8 --sigsqr=2
 --m=1e-4 --mu=1e-4 --r=1e-8 --sigsqr=25
---m=1e-3 --mu=1e-6 --r=1e-6 --sigsqr=5
+--m=1e-3 --mu=1e-6 --r=1e-6 --sigsqr=5 q3
 --m=1e-3 --mu=1e-6 --r=1e-6 --sigsqr=2
 --m=1e-3 --mu=1e-6 --r=1e-6 --sigsqr=25
 --m=1e-3 --mu=1e-6 --r=1e-7 --sigsqr=5
