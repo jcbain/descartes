@@ -3,6 +3,7 @@ import subprocess
 import argparse
 import os
 import re
+import random
 
 from itertools import product
 from time import gmtime, strftime
@@ -279,8 +280,9 @@ def main():
         A call to the slim command running the script `local_adaptation.slim`
     """
     cwd = os.getcwd() + '/'
-    output_dir = cwd + 'run' + strftime("%Y%m%d_%H%M%S", gmtime()) + '/'
+    output_dir = cwd + 'run' + strftime("%Y%m%d_%H%M%S", gmtime()) + '_' + str(random.randint(1, 1000)) + '/'
     os.mkdir(output_dir)
+    
 
     parser = argparse.ArgumentParser()
 
@@ -296,6 +298,7 @@ def main():
     mu = create_params("mu=", results.mu)
     r = create_params("r=", results.r)
     sigsqr = create_params("sigsqr=", results.sigsqr)
+    
 
     params_list = [x for x in product(m, mu, r, sigsqr)]
     popen_scaffold = 'slim -d "{}" -d "{}" -d "{}" -d "{}" -d "{}" local_adaptation.slim'
