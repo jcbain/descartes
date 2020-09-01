@@ -1,15 +1,68 @@
+--m=0.1 --mu=1e-6 --r=1e-6 --sigsqr=2 --n=5000 q
+--m=0.1 --mu=1e-6 --r=1e-6 --sigsqr=2 --n=1000 q2
+--m=0.1 --mu=1e-6 --r=1e-6 --sigsqr=2 --n=500 q3
+--m=0.1 --mu=1e-6 --r=1e-6 --sigsqr=25 --n=5000 q4
+--m=0.1 --mu=1e-6 --r=1e-6 --sigsqr=25 --n=1000 q5
+--m=0.1 --mu=1e-6 --r=1e-6 --sigsqr=25 --n=500 q6
+--m=5e-2 --mu=1e-6 --r=1e-6 --sigsqr=2 --n=5000
+--m=5e-2 --mu=1e-6 --r=1e-6 --sigsqr=2 --n=1000
+--m=5e-2 --mu=1e-6 --r=1e-6 --sigsqr=2 --n=500
+--m=5e-2 --mu=1e-6 --r=1e-6 --sigsqr=25 --n=5000
+--m=5e-2 --mu=1e-6 --r=1e-6 --sigsqr=25 --n=1000
+--m=5e-2 --mu=1e-6 --r=1e-6 --sigsqr=25 --n=500
+--m=1e-2 --mu=1e-6 --r=1e-6 --sigsqr=2 --n=5000
+--m=1e-2 --mu=1e-6 --r=1e-6 --sigsqr=2 --n=1000
+--m=1e-2 --mu=1e-6 --r=1e-6 --sigsqr=2 --n=500
+--m=1e-2 --mu=1e-6 --r=1e-6 --sigsqr=25 --n=5000
+--m=1e-2 --mu=1e-6 --r=1e-6 --sigsqr=25 --n=1000
+--m=1e-2 --mu=1e-6 --r=1e-6 --sigsqr=25 --n=500
+--m=5e-3 --mu=1e-6 --r=1e-6 --sigsqr=2 --n=5000
+--m=5e-3 --mu=1e-6 --r=1e-6 --sigsqr=2 --n=1000
+--m=5e-3 --mu=1e-6 --r=1e-6 --sigsqr=2 --n=500
+--m=5e-3 --mu=1e-6 --r=1e-6 --sigsqr=25 --n=5000
+--m=5e-3 --mu=1e-6 --r=1e-6 --sigsqr=25 --n=1000
+--m=5e-3 --mu=1e-6 --r=1e-6 --sigsqr=25 --n=500
+--m=1e-3 --mu=1e-6 --r=1e-6 --sigsqr=2 --n=5000
+--m=1e-3 --mu=1e-6 --r=1e-6 --sigsqr=2 --n=1000
+--m=1e-3 --mu=1e-6 --r=1e-6 --sigsqr=2 --n=500
+--m=1e-3 --mu=1e-6 --r=1e-6 --sigsqr=25 --n=5000
+--m=1e-3 --mu=1e-6 --r=1e-6 --sigsqr=25 --n=1000
+--m=1e-3 --mu=1e-6 --r=1e-6 --sigsqr=25 --n=500
+--m=5e-4 --mu=1e-6 --r=1e-6 --sigsqr=2 --n=5000
+--m=5e-4 --mu=1e-6 --r=1e-6 --sigsqr=2 --n=1000
+--m=5e-4 --mu=1e-6 --r=1e-6 --sigsqr=2 --n=500
+--m=5e-4 --mu=1e-6 --r=1e-6 --sigsqr=25 --n=5000
+--m=5e-4 --mu=1e-6 --r=1e-6 --sigsqr=25 --n=1000
+--m=5e-4 --mu=1e-6 --r=1e-6 --sigsqr=25 --n=500
+--m=1e-4 --mu=1e-6 --r=1e-6 --sigsqr=2 --n=5000
+--m=1e-4 --mu=1e-6 --r=1e-6 --sigsqr=2 --n=1000
+--m=1e-4 --mu=1e-6 --r=1e-6 --sigsqr=2 --n=500
+--m=1e-4 --mu=1e-6 --r=1e-6 --sigsqr=25 --n=5000
+--m=1e-4 --mu=1e-6 --r=1e-6 --sigsqr=25 --n=1000
+--m=1e-4 --mu=1e-6 --r=1e-6 --sigsqr=25 --n=500
+--m=1e-5 --mu=1e-6 --r=1e-6 --sigsqr=2 --n=5000
+--m=1e-5 --mu=1e-6 --r=1e-6 --sigsqr=2 --n=1000
+--m=1e-5 --mu=1e-6 --r=1e-6 --sigsqr=2 --n=500
+--m=1e-5 --mu=1e-6 --r=1e-6 --sigsqr=25 --n=5000
+--m=1e-5 --mu=1e-6 --r=1e-6 --sigsqr=25 --n=1000
+--m=1e-5 --mu=1e-6 --r=1e-6 --sigsqr=25 --n=500
+
+
+
+
+
 --m=1e-5 --mu=1e-6 --r=1e-6 --sigsqr=5  run20200722_190338
 --m=1e-5 --mu=1e-6 --r=1e-6 --sigsqr=2  run20200726_045312
 --m=1e-5 --mu=1e-6 --r=1e-6 --sigsqr=25 run20200724_165847
 --m=1e-5 --mu=1e-6 --r=1e-7 --sigsqr=5  run20200726_202739
 --m=1e-5 --mu=1e-6 --r=1e-7 --sigsqr=2  run20200727_160513
 --m=1e-5 --mu=1e-6 --r=1e-7 --sigsqr=25 run20200728_161422
---m=1e-5 --mu=1e-6 --r=1e-8 --sigsqr=5 q
---m=1e-5 --mu=1e-6 --r=1e-8 --sigsqr=2 q2
---m=1e-5 --mu=1e-6 --r=1e-8 --sigsqr=25 q3
---m=1e-5 --mu=1e-5 --r=1e-6 --sigsqr=5
---m=1e-5 --mu=1e-5 --r=1e-6 --sigsqr=2
---m=1e-5 --mu=1e-5 --r=1e-6 --sigsqr=25
+--m=1e-5 --mu=1e-6 --r=1e-8 --sigsqr=5 run20200813_160230
+--m=1e-5 --mu=1e-6 --r=1e-8 --sigsqr=2 run20200813_163730_4 run20200813_163730_616 run20200813_163731_798
+--m=1e-5 --mu=1e-6 --r=1e-8 --sigsqr=25 run20200813_163730_834
+--m=1e-5 --mu=1e-5 --r=1e-6 --sigsqr=5 q4
+--m=1e-5 --mu=1e-5 --r=1e-6 --sigsqr=2 q5
+--m=1e-5 --mu=1e-5 --r=1e-6 --sigsqr=25 q6
 --m=1e-5 --mu=1e-5 --r=1e-7 --sigsqr=5
 --m=1e-5 --mu=1e-5 --r=1e-7 --sigsqr=2
 --m=1e-5 --mu=1e-5 --r=1e-7 --sigsqr=25
