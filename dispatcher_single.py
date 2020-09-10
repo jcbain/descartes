@@ -213,10 +213,10 @@ def convert_popen_to_data(params_list, popen_scaffold, output_every, output_dir,
     """
     # dictionary to map code to dataset name
     datasets_dict = {
-        'phenotypes': 'p33',
+        # 'phenotypes': 'p33',
         'mutations': 'm39',
-        'genome1': 'g36',
-        'genome2': 'g30'
+        # 'genome1': 'g36',
+        # 'genome2': 'g30'
     }
 
     for ind, params in enumerate(params_list):
@@ -292,7 +292,7 @@ def main():
     parser.add_argument('--r', action='store', type=str, default="1e-6")
     parser.add_argument('--sigsqr', action='store', type=str, default="5")
     parser.add_argument('--n', action='store', type=int, default=1000)
-    parser.add_argument('--datasets', nargs='+', default=['mutations', 'phenotypes', 'genome1', 'genome2'])
+    parser.add_argument('--datasets', nargs='+', default=['mutations'])
     results = parser.parse_args()
 
     m = create_params("m=", results.m)

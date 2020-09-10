@@ -163,40 +163,10 @@ fitness(NULL, p2) {
 		for (i in 0:(size(muts)-1)){
 			out_m = out_m + "m39 " + muts.position[i] + " " + muts.selectionCoeff[i] + " " + mut_freqs_p1[i] + " " + mut_freqs_p2[i] + " " + muts.originGeneration[i] + " " + m + " " + mu + " " + r + " " + sigsqr + " " + N + " " + sim.generation + "\n";
 		}
-
-		out_p          = "p33 " + "pop " + "ind_index " + "status " + "phen " + "migr_rate " + "mut_rate " + "recomb_rate " + "fitness_width " + "n " + "output_gen " + "\n";
-
-		for (pop in c(0,1)){
-		   for (ind in sim.subpopulations[pop].individuals){
-		      out_p = out_p + "p33 " + pop + " " + ind.index + " " + ind.migrant + " " + ind.sumOfMutationsOfType(m1)  + " " + m + " " + mu + " " + r + " " + sigsqr + " " + N + " " + sim.generation + "\n";
-		   }
-		}
-		
-		   out_g1             = "g36 " + "pop " + "ind_id " + "mutation_id " + "select_coef " + "position " + "n " + "output_gen " + "\n";
-   for (pop in c(0,1)){
-      for (ind in sim.subpopulations[pop].individuals){
-         for (ms in ind.genome1.mutations){
-             out_g1 = out_g1 + "g36 " + pop + " " + ind.index + " " + ms.id + " " + ms.selectionCoeff + " " + ms.position + " " + N + " " +  sim.generation + " \n"; 
-         }
-      }
-      }
-      
-   out_g2             = "g30 " + "pop " + "ind_id " + "mutation_id " + "select_coef " + "position " + "n " + "output_gen " + "\n";
-      for (pop in c(0,1)){
-         for (ind in sim.subpopulations[pop].individuals){
-            for (ms in ind.genome2.mutations){
-                out_g2 = out_g2 + "g30 " + pop + " " + ind.index + " " + ms.id + " " + ms.selectionCoeff + " " + ms.position  + " " + N + " " +  sim.generation +  " \n"; 
-            }
-         }
-      }
-		
-		
+	
 		
    	print(out_m);
-    	print(out_p);
-    	print(out_g1);
-    	print(out_g2);
-	
+
 	}
 
 	
