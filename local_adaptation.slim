@@ -60,7 +60,7 @@ fitness(NULL, p2) {
 	return exp(-1* (-1 - individual.z)^2 / (2*sigsqr));
 }
 
-1:250000 late(){
+1:2000 late(){
 	if (sim.generation % outputEvery == 0){
 		genomes			= sim.subpopulations.genomes;
 		muts			= sortBy(unique(c(genomes.mutationsOfType(m1))), "position");

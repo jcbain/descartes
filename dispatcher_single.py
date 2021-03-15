@@ -222,7 +222,7 @@ def convert_popen_to_data(params_list, popen_scaffold, output_every, output_dir,
     for ind, params in enumerate(params_list):
 
         # create the string command to be run
-        popen_string = popen_scaffold.format(params[0], params[1], params[2], params[3], params[4], output_every)
+        popen_string = popen_scaffold.format(params[0], params[1], params[2], params[3], params[4], params[5], output_every)
 
         # file and dataset rep dictionary calls
         file_name_dict = dict()
@@ -289,6 +289,7 @@ def main():
     parser.add_argument('--rep', action='store', type=int, default=3)
     parser.add_argument('--m', action='store', type=str, default="1e-5")
     parser.add_argument('--mu', action='store', type=str, default="1e-6")
+    parser.add_argument('--numpos', action='store', type=str, default="160")
     parser.add_argument('--r', action='store', type=str, default="1e-6")
     parser.add_argument('--sigsqr', action='store', type=str, default="5")
     parser.add_argument('--n', action='store', type=int, default=1000)
@@ -297,13 +298,14 @@ def main():
 
     m = create_params("m=", results.m)
     mu = create_params("mu=", results.mu)
+    numpos = create_params("numpos=", results.numpos)
     r = create_params("r=", results.r)
     sigsqr = create_params("sigsqr=", results.sigsqr)
     n = create_params("N=", results.n)
     
 
-    params_list = [x for x in product(m, mu, r, sigsqr, n)]
-    popen_scaffold = 'slim -d "{}" -d "{}" -d "{}" -d "{}" -d "{}" -d "{}" local_adaptation.slim'
+    params_list = [x for x in product(m, mu, r, sigsqr, n, numpos)]
+    popen_scaffold = 'slim -d "{}" -d "{}" -d "{}" -d "{}" -d "{}" -d "{}" -d "{}" local_adaptation.slim'
 
     output_every = "outputEvery=2500"
 
