@@ -1,21 +1,17 @@
 // initialize genetic architecture of local adaptation
 initialize() {
 	if (exists("slimgui")) {
-		defineConstant("m", 1e-10);   // migration rate
-		defineConstant("r", 1e-6);   // recombination rate
-		defineConstant("mu", 1e-5);  // mutation rate
+		defineConstant("m", 1e-10);   	// migration rate
+		defineConstant("mu", 1e-5);  	// mutation rate
 		defineConstant("sigsqr", 2);    // width of fitness function
-		defineConstant("N", 1000);
+		defineConstant("N", 1000);		// size of populatio
+		defineConstant("numpos", 160); 		// num positions on genomic element
+		defineConstant("r", 1/numpos);   	// recombination rate
+
+		defineConstant("outputEvery", 1000); // how often to output data
 		
-		defineConstant("outputEvery", 1000);
-		
-		// standard streams
-//		defineConstant("stdout", "/Users/jamesbain/Documents/research/simulations/practice/output/");
 	}
-	
-	// fixed params
-	// defineConstant("N", 1000);      // subpopulation size
-	
+		
 	 // init mutation rate
 	initializeMutationRate(mu);
 	
@@ -24,92 +20,12 @@ initialize() {
 	
 	// init genomic element
 	initializeGenomicElementType("g1", m1, 1);
-	
-	initializeGenomicElement(g1,  20001,  20002);
-	initializeGenomicElement(g1,  27501,  27502);
-	initializeGenomicElement(g1,  132501,  132502);
-	initializeGenomicElement(g1,  140001,  140002);
-	initializeGenomicElement(g1,  170001,  170002);
-	initializeGenomicElement(g1,  192501,  192502);
-	initializeGenomicElement(g1,  207501,  207502);
-	initializeGenomicElement(g1,  342501,  342502);
-	initializeGenomicElement(g1,  387501,  387502);
-	initializeGenomicElement(g1,  455001,  455002);
-	initializeGenomicElement(g1,  537501,  537502);
-	initializeGenomicElement(g1,  552501,  552502);
-	initializeGenomicElement(g1,  567501,  567502);
-	initializeGenomicElement(g1,  620001,  620002);
-	initializeGenomicElement(g1,  642501,  642502);
-	initializeGenomicElement(g1,  650001,  650002);
-	initializeGenomicElement(g1,  747501,  747502);
-	initializeGenomicElement(g1,  800001,  800002);
-	initializeGenomicElement(g1,  920001,  920002);
-	initializeGenomicElement(g1,  1310001,  1310002);
-	initializeGenomicElement(g1,  1355001,  1355002);
-	initializeGenomicElement(g1,  1362501,  1362502);
-	initializeGenomicElement(g1,  1467501,  1467502);
-	initializeGenomicElement(g1,  1610001,  1610002);
-	initializeGenomicElement(g1,  1617501,  1617502);
-	initializeGenomicElement(g1,  1632501,  1632502);
-	initializeGenomicElement(g1,  1662501,  1662502);
-	initializeGenomicElement(g1,  1677501,  1677502);
-	initializeGenomicElement(g1,  1737501,  1737502);
-	initializeGenomicElement(g1,  1917501,  1917502);
-	initializeGenomicElement(g1,  1970001,  1970002);
-	initializeGenomicElement(g1,  2015001,  2015002);
-	initializeGenomicElement(g1,  2030001,  2030002);
-	initializeGenomicElement(g1,  2037501,  2037502);
-	initializeGenomicElement(g1,  2045001,  2045002);
-	initializeGenomicElement(g1,  2112501,  2112502);
-	initializeGenomicElement(g1,  2150001,  2150002);
-	initializeGenomicElement(g1,  2210001,  2210002);
-	initializeGenomicElement(g1,  2262501,  2262502);
-	initializeGenomicElement(g1,  2300001,  2300002);
-	initializeGenomicElement(g1,  2307501,  2307502);
-	initializeGenomicElement(g1,  2330001,  2330002);
-	initializeGenomicElement(g1,  2352501,  2352502);
-	initializeGenomicElement(g1,  2390001,  2390002);
-	initializeGenomicElement(g1,  2412501,  2412502);
-	initializeGenomicElement(g1,  2457501,  2457502);
-	initializeGenomicElement(g1,  2495001,  2495002);
-	initializeGenomicElement(g1,  2720001,  2720002);
-	initializeGenomicElement(g1,  2892501,  2892502);
-	initializeGenomicElement(g1,  2990001,  2990002);
-	initializeGenomicElement(g1,  3005001,  3005002);
-	initializeGenomicElement(g1,  3020001,  3020002);
-	initializeGenomicElement(g1,  3087501,  3087502);
-	initializeGenomicElement(g1,  3117501,  3117502);
-	initializeGenomicElement(g1,  3132501,  3132502);
-	initializeGenomicElement(g1,  3207501,  3207502);
-	initializeGenomicElement(g1,  3470001,  3470002);
-	initializeGenomicElement(g1,  3507501,  3507502);
-	initializeGenomicElement(g1,  3620001,  3620002);
-	initializeGenomicElement(g1,  3710001,  3710002);
-	initializeGenomicElement(g1,  3747501,  3747502);
-	initializeGenomicElement(g1,  3830001,  3830002);
-	initializeGenomicElement(g1,  3882501,  3882502);
-	initializeGenomicElement(g1,  3897501,  3897502);
-	initializeGenomicElement(g1,  3987501,  3987502);
-	initializeGenomicElement(g1,  4070001,  4070002);
-	initializeGenomicElement(g1,  4092501,  4092502);
-	initializeGenomicElement(g1,  4122501,  4122502);
-	initializeGenomicElement(g1,  4160001,  4160002);
-	initializeGenomicElement(g1,  4310001,  4310002);
-	initializeGenomicElement(g1,  4400001,  4400002);
-	initializeGenomicElement(g1,  4482501,  4482502);
-	initializeGenomicElement(g1,  4580001,  4580002);
-	initializeGenomicElement(g1,  4617501,  4617502);
-	initializeGenomicElement(g1,  4662501,  4662502);
-	initializeGenomicElement(g1,  4722501,  4722502);
-	initializeGenomicElement(g1,  4812501,  4812502);
-	initializeGenomicElement(g1,  4895001,  4895002);
-	initializeGenomicElement(g1,  4962501,  4962502);
-	initializeGenomicElement(g1,  4977501,  4977502);
+	initializeGenomicElement(g1,  1,  numpos);
 	
 	initializeRecombinationRate(r);
 
 	m1.convertToSubstitution = F;
-	m1.mutationStackPolicy = "f";  
+	m1.mutationStackPolicy = "l";  //last 
 }
 
 // create a subpopulations of size N individuals
@@ -123,20 +39,14 @@ initialize() {
 }
 
 1: late() {
-
 	// create vector of all individuals
-	inds			= sim.subpopulations.individuals;
-	
-	// for each individual in <inds>, sum the selection coefficients of 
-	// all <mut`> mutations in the individual's genome
-	inds.z		= inds.sumOfMutationsOfType(m1);
+	inds  = sim.subpopulations.individuals;
+	inds.z = inds.sumOfMutationsOfType(m1);
 }
 
 fitness(m1) {
-
 	// the QTLs themselves are neutral; their effect is handled below
 	return 1.0;
-
 }
 
 
@@ -150,24 +60,20 @@ fitness(NULL, p2) {
 	return exp(-1* (-1 - individual.z)^2 / (2*sigsqr));
 }
 
-//TODO: Need to build in options to run individual components alongside --datasets call in python script
-1:5000 late(){
+1:250000 late(){
 	if (sim.generation % outputEvery == 0){
 		genomes			= sim.subpopulations.genomes;
 		muts			= sortBy(unique(c(genomes.mutationsOfType(m1))), "position");
 		mut_freqs_p1	= sim.mutationFrequencies(p1, muts);
 		mut_freqs_p2	= sim.mutationFrequencies(p2, muts);
-		
 		out_m 			= "m39 " + "position " + "select_coef " + "p1_freq " + "p2_freq " + "origin_gen " +  "migr_rate " + "mut_rate " + "recomb_rate " + "fitness_width " + "n " + "output_gen " + "\n";
 		
-		for (i in 0:(size(muts)-1)){
-			out_m = out_m + "m39 " + muts.position[i] + " " + muts.selectionCoeff[i] + " " + mut_freqs_p1[i] + " " + mut_freqs_p2[i] + " " + muts.originGeneration[i] + " " + m + " " + mu + " " + r + " " + sigsqr + " " + N + " " + sim.generation + "\n";
+		// if mutations are preseent output
+		if (size(muts) > 0 ) {
+			for (i in 0:(size(muts)-1)){
+				out_m = out_m + "m39 " + muts.position[i] + " " + muts.selectionCoeff[i] + " " + mut_freqs_p1[i] + " " + mut_freqs_p2[i] + " " + muts.originGeneration[i] + " " + m + " " + mu + " " + r + " " + sigsqr + " " + N + " " + sim.generation + "\n";
+			}
 		}
-	
-		
-   	print(out_m);
-
-	}
-
-	
+   		print(out_m);
+	}	
 }
