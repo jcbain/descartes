@@ -7,8 +7,6 @@ import random
 from time import gmtime, strftime
 from helpers import output_manipulators, file_cleaners
 
-
-
 def run_slim_process():
 
     cwd = os.getcwd() + '/'
@@ -21,10 +19,10 @@ def run_slim_process():
     parser.add_argument('--m', action='store', type=str, default="1e-5")
     parser.add_argument('--mu', action='store', type=str, default="1e-6")
     parser.add_argument('--numpos', action='store', type=str, default="160")
-    parser.add_argument('--r', action='store', type=str, default="1e-6")
+    parser.add_argument('--r', action='store', type=str, default="0.00625")
     parser.add_argument('--sigsqr', action='store', type=str, default="5")
     parser.add_argument('--n', action='store', type=str, default="1000")
-    parser.add_argument('--outputEvery', action='store', type=str, default="1000")
+    parser.add_argument('--outputEvery', action='store', type=str, default="10")
 
     results = parser.parse_args()
 
