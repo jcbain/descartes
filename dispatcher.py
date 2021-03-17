@@ -35,7 +35,7 @@ def run_slim_process():
     output_every = file_cleaners.create_params("outputEvery=", results.outputEvery)[0]
     reps = results.rep
 
-    file_name = file_cleaners.create_file_name(m, m, num_pos, n, r, sigsqr)
+    file_name = file_cleaners.create_file_name(m, mu, num_pos, n, r, sigsqr)
 
     full = []
 
