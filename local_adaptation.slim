@@ -1,14 +1,14 @@
 // initialize genetic architecture of local adaptation
 initialize() {
 	if (exists("slimgui")) {
-		defineConstant("m", 1e-10);   	// migration rate
+		defineConstant("m", 1e-5);   	// migration rate
 		defineConstant("mu", 1e-5);  	// mutation rate
-		defineConstant("sigsqr", 2);    // width of fitness function
+		defineConstant("sigsqr", 25);    // width of fitness function
 		defineConstant("N", 1000);		// size of populatio
 		defineConstant("numpos", 160); 		// num positions on genomic element
 		defineConstant("r", 1/numpos);   	// recombination rate
 
-		defineConstant("outputEvery", 1000); // how often to output data
+		defineConstant("outputEvery", 5); // how often to output data
 		
 	}
 		
