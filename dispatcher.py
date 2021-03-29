@@ -22,6 +22,7 @@ def run_slim_process():
     parser.add_argument('--r', action='store', type=str, default="0.00625")
     parser.add_argument('--sigsqr', action='store', type=str, default="5")
     parser.add_argument('--n', action='store', type=str, default="1000")
+    parser.add_argument('--alpha', action='store', type=str, default="0.1")
     parser.add_argument('--outputEvery', action='store', type=str, default="10")
 
     results = parser.parse_args()
@@ -32,15 +33,16 @@ def run_slim_process():
     r = file_cleaners.create_params("r=", results.r)[0]
     sigsqr = file_cleaners.create_params("sigsqr=", results.sigsqr)[0]
     n = file_cleaners.create_params("N=", results.n)[0]
+    alpha = file_cleaners.create_params("alpha=", results.alpha)[0]
     output_every = file_cleaners.create_params("outputEvery=", results.outputEvery)[0]
     reps = results.rep
 
-    file_name = file_cleaners.create_file_name(m, mu, num_pos, n, r, sigsqr)
+    file_name = file_cleaners.create_file_name(m, mu, num_pos, n, r, alpha, sigsqr)
 
     full = []
 
     for i in range(reps):
-        command = "slim -d {} -d {} -d {} -d {} -d {} -d {} -d {} local_adaptation.slim".format(m, mu, num_pos, r, sigsqr, n, output_every)
+        command = "slim -d {} -d {} -d {} -d {} -d {} -d {} -d {} -d {} local_adaptation.slim".format(m, mu, num_pos, r, sigsqr, n, alpha, output_every)
         process = subprocess.Popen([command], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                                        universal_newlines=True)
         out, err = process.communicate()

@@ -7,6 +7,7 @@ initialize() {
 		defineConstant("N", 1000);		// size of populatio
 		defineConstant("numpos", 160); 		// num positions on genomic element
 		defineConstant("r", 1/numpos);   	// recombination rate
+		defineConstant("alpha", 0.1); 	 // mutation effect size
 
 		defineConstant("outputEvery", 5); // how often to output data
 		
@@ -16,7 +17,7 @@ initialize() {
 	initializeMutationRate(mu);
 	
 	// init mutation type
-	initializeMutationType("m1", 0.5, "n", 0.0, 0.1);
+	initializeMutationType("m1", 0.5, "n", 0.0, alpha);
 	
 	// init genomic element
 	initializeGenomicElementType("g1", m1, 1);
@@ -68,7 +69,7 @@ fitness(NULL, p2) {
 		mut_freqs_p2	= sim.mutationFrequencies(p2, muts);
 
 		if (sim.generation / outputEvery == 1){
-			out_m 			= "m39 " + "position " + "select_coef " + "p1_freq " + "p2_freq " + "origin_gen " +  "migr_rate " + "mut_rate " + "recomb_rate " + "fitness_width " + "n " + "output_gen " + "\n";
+			out_m 			= "m39 " + "position " + "select_coef " + "p1_freq " + "p2_freq " + "origin_gen " +  "migr_rate " + "mut_rate " + "recomb_rate " + "fitness_width " + "n " + "alpha " + "output_gen " + "\n";
 		} else {
 			out_m = "";
 		}
@@ -76,7 +77,7 @@ fitness(NULL, p2) {
 		// if mutations are present output
 		if (size(muts) > 0 ) {
 			for (i in 0:(size(muts)-1)){
-				out_m = out_m + "m39 " + muts.position[i] + " " + muts.selectionCoeff[i] + " " + mut_freqs_p1[i] + " " + mut_freqs_p2[i] + " " + muts.originGeneration[i] + " " + m + " " + mu + " " + r + " " + sigsqr + " " + N + " " + sim.generation + "\n";
+				out_m = out_m + "m39 " + muts.position[i] + " " + muts.selectionCoeff[i] + " " + mut_freqs_p1[i] + " " + mut_freqs_p2[i] + " " + muts.originGeneration[i] + " " + m + " " + mu + " " + r + " " + sigsqr + " " + N + " " + alpha + " " + sim.generation + "\n";
 			}
 		}
    		print(out_m);
